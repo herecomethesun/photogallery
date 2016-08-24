@@ -12,6 +12,22 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
+
+                @if ($collections->count())
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Коллекции <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            @foreach($collections as $collection)
+                                <li>
+                                    <a href="{{ route('collection.show', $collection->id) }}">
+                                        {{ $collection->title }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                @endif
+
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
