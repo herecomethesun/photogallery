@@ -1,7 +1,12 @@
+@inject('settings', 'App\Settings\SettingsContract')
+
 @extends('layouts.app')
 
 @section('highlight')
-    <video src="/front.mp4" autoplay loop muted class="video-bg"></video>
+
+    @if ($settings->has('video_url'))
+        <video src="{{ asset('storage/'.$settings->get('video_url')) }}" autoplay loop muted class="video-bg"></video>
+    @endif
 
     <div class="video-overlay">
         <div class="jumbotron">
