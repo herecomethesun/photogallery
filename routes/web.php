@@ -1,8 +1,6 @@
 <?php
 
-Route::get('/', function () {
-    return view('pages.front');
-})->name('front');
+Route::get('/', 'PageController@front')->name('front');
 
 Route::get('/home', 'HomeController@index');
 
