@@ -22,7 +22,20 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
+/**
+ * Collections
+ */
 $factory->define(App\Collection::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->sentence,
+        'description' => $faker->text,
+    ];
+});
+
+/**
+ * Album
+ */
+$factory->define(App\Album::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->sentence,
         'description' => $faker->text,

@@ -17,3 +17,13 @@ Route::post('collection/store', 'CollectionController@store')->name('collection.
 Route::get('collection/{collection}/edit', 'CollectionController@edit')->name('collection.edit');
 Route::patch('collection/{collection}', 'CollectionController@update')->name('collection.update');
 Route::delete('collection/{collection}', 'CollectionController@destroy')->name('collection.delete');
+
+Route::post('album/store', 'AlbumController@store')->name('album.store');
+Route::get('album/create', 'AlbumController@create')->name('album.create');
+Route::get('album/{album}/edit', 'AlbumController@edit')->name('album.edit');
+Route::post('album/{album}/upload', 'AlbumController@upload')->name('album.upload');
+Route::patch('album/{album}', 'AlbumController@update')->name('album.update');
+Route::delete('album/{album}', 'AlbumController@destroy')->name('album.delete');
+
+Route::get('collection/{collection}/album/{album}', 'AlbumController@show')->name('album.show');
+// Route::resource('collection/{collection}/album', 'AlbumController', ['except' => ['index']]);

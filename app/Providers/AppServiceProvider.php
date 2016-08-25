@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('partials.navbar', function ($view) {
+        view()->composer(['partials.navbar', 'albums.create', 'albums.edit'], function ($view) {
             $view->with('collections', Collection::all());
         });
     }

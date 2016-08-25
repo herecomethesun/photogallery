@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Создание новой коллекции</h1>
+    <h1>Редактирование коллекции &laquo;{{ $collection->title }}&raquo;</h1>
 
     <form action="{{ route('collection.update', $collection->id) }}" method="post">
         {{ csrf_field() }}
         {{ method_field('patch') }}
 
         <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-            <lavel for="title" class="control-label">Название коллекции</lavel>
+            <label for="title" class="control-label">Название коллекции</label>
 
             <input type="text"
                    id="title"
@@ -23,7 +23,7 @@
         </div>
 
         <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-            <lavel for="description" class="control-label">Описание</lavel>
+            <label for="description" class="control-label">Описание</label>
             <textarea name="description" id="description" class="form-control">{{ old('description', $collection->description) }}</textarea>
             @if ($errors->has('description'))
                 <div class="help-block">{{ $errors->first('description') }}</div>

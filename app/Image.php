@@ -4,23 +4,23 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Collection extends Model
+class Image extends Model
 {
     /**
      * @var array
      */
     protected $fillable = [
-        'title',
-        'description'
+        'path',
+        'thumbnail_path',
     ];
 
     /**
-     * Collection albums
+     * Album of the image
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function albums()
+    public function album()
     {
-        return $this->hasMany(Album::class);
+        return $this->belongsTo(Album::class);
     }
 }
