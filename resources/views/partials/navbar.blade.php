@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-static-top navbar-fixed-top">
+<nav class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="navbar-header">
 
@@ -62,7 +62,7 @@
 
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <a href="#">
+                                <a href="{{ route('video.change') }}">
                                     <i class="fa fa-file-video-o"></i> Изменить видео
                                 </a>
                             </li>

@@ -27,3 +27,6 @@ Route::delete('album/{album}', 'AlbumController@destroy')->name('album.delete');
 
 Route::get('collection/{collection}/album/{album}', 'AlbumController@show')->name('album.show');
 // Route::resource('collection/{collection}/album', 'AlbumController', ['except' => ['index']]);
+
+Route::get('change-video', 'VideoController@edit')->name('video.change');
+Route::post('change-video', 'VideoController@upload')->name('video.update');
