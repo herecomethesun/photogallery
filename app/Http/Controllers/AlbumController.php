@@ -18,7 +18,7 @@ class AlbumController extends Controller
             'except' => 'show',
         ]);
     }
-    
+
     /**
      * Show the form for creating a new album.
      *
