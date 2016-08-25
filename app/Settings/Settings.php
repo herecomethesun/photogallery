@@ -72,11 +72,15 @@ class Settings implements SettingsContract
     }
 
     /**
-     * @param $key
-     * @param $value
+     * @param string|array $key
+     * @param string $value
      */
-    public function set($key, $value)
+    public function set($key, $value = null)
     {
+        if (is_array($key)) {
+            return $this->setFromArray($key);
+        }
+
         $this->settings->put($key, $value);
 
         $this->store();
@@ -97,5 +101,17 @@ class Settings implements SettingsContract
     protected function json()
     {
         return $this->settings->toJson();
+    }
+
+    /**
+     * @param array $settings
+     */
+    protected function setFromArray(array $settings)
+    {
+        $this->settings = $this->settings->merge($settings);
+
+        $this->store();
+
+        return;
     }
 }
