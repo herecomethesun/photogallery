@@ -19,6 +19,8 @@ class SettingsController extends Controller
     public function __construct(SettingsContract $settings)
     {
         $this->settings = $settings;
+
+        $this->middleware('auth');
     }
 
     /**
