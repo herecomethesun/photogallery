@@ -68,7 +68,7 @@
                             </li>
 
                             <li>
-                                <a href="#">
+                                <a href="{{ route('settings') }}">
                                     <i class="fa fa-cog"></i> Настроить сайт
                                 </a>
                             </li>

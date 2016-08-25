@@ -11,14 +11,22 @@
     <div class="video-overlay">
         <div class="jumbotron">
             <h1>{{ config('app.name') }}</h1>
-            <p>Сайт дизайнера Анны Лесниковой</p>
 
-            <a href="#">+7 (999) 999-99-99</a>
-            <a href="#">annalesnikova@mail.ru</a>
+            @if ($settings->has('site_slogan'))
+                <p>{{ $settings->get('site_slogan') }}</p>
+            @endif
+
+            @if ($settings->has('site_phone'))
+                <a href="tel:{{ preg_replace('/[^\+\d]/', '', $settings->get('site_phone')) }}">
+                    {{ $settings->get('site_phone') }}
+                </a>
+            @endif
+
+            @if ($settings->has('site_email'))
+                <a href="mailto:{{ $settings->get('site_email') }}">
+                    {{ $settings->get('site_email') }}
+                </a>
+            @endif
         </div>
     </div>
-@endsection
-
-@section('content')
-
 @endsection

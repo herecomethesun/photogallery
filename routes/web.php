@@ -30,3 +30,6 @@ Route::get('collection/{collection}/album/{album}', 'AlbumController@show')->nam
 
 Route::get('change-video', 'VideoController@edit')->name('video.change');
 Route::post('change-video', 'VideoController@upload')->name('video.update');
+
+Route::get('settings', 'SettingsController@edit')->name('settings');
+Route::post('settings', 'SettingsController@update')->name('settings.update');
