@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-static-top">
+<nav class="navbar navbar-default navbar-static-top navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
 
@@ -19,18 +19,21 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
+                <li><a href="#">О бренде</a></li>
+                <li><a href="#">О дизайнере</a></li>
+                <li><a href="#">Новости</a></li>
                 @if ($collections->count())
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Коллекции <span class="caret"></span></a>
                         <ul class="dropdown-menu">
 
                             @if (Auth::check())
-                            <li>
-                                <a href="{{ route('collection.create') }}">
-                                    Добавить коллекцию
-                                </a>
-                            </li>
-                            <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="{{ route('collection.create') }}">
+                                        Добавить коллекцию
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
                             @endif
 
                             @foreach($collections as $collection)
@@ -43,6 +46,7 @@
                         </ul>
                     </li>
                 @endif
+                <li><a href="#">Наши контакты</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -58,10 +62,23 @@
 
                         <ul class="dropdown-menu" role="menu">
                             <li>
+                                <a href="#">
+                                    <i class="fa fa-file-video-o"></i> Изменить видео
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-cog"></i> Настроить сайт
+                                </a>
+                            </li>
+
+                            <li class="divider" role="separator"></li>
+                            <li>
                                 <a href="{{ url('/logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                    Выход
+                                    <i class="fa fa-sign-out"></i> Выход
                                 </a>
 
                                 <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
