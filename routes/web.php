@@ -1,6 +1,12 @@
 <?php
 
+// Pages
 Route::get('/', 'PageController@front')->name('front');
+Route::get('brand', 'PageController@brand')->name('page.brand');
+Route::get('designer', 'PageController@designer')->name('page.designer');
+Route::get('contacts', 'PageController@contacts')->name('page.contacts');
+Route::get('page-edit/{page}', 'PageController@edit')->name('page.edit');
+Route::patch('page-update/{page}', 'PageController@update')->name('page.update');
 
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

@@ -19,8 +19,8 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                <li><a href="#">О бренде</a></li>
-                <li><a href="#">О дизайнере</a></li>
+                <li><a href="{{ route('page.brand') }}">О бренде</a></li>
+                <li><a href="{{ route('page.designer') }}">О дизайнере</a></li>
                 <li><a href="#">Новости</a></li>
                 @if ($collections->count())
                     <li class="dropdown">
@@ -46,7 +46,7 @@
                         </ul>
                     </li>
                 @endif
-                <li><a href="#">Наши контакты</a></li>
+                <li><a href="{{ route('page.contacts') }}">Наши контакты</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->
