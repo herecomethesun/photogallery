@@ -37,5 +37,7 @@
     <!-- Scripts -->
     <script src="/js/app.js"></script>
     @yield('scripts')
+
+    @include('partials.footer')
 </body>
 </html>
