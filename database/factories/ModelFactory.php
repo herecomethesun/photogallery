@@ -41,3 +41,18 @@ $factory->define(App\Album::class, function (Faker\Generator $faker) {
         'description' => $faker->text,
     ];
 });
+
+/**
+ * Article
+ */
+$factory->define(App\Article::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->sentence,
+        'content' => $faker->realText(500),
+        'published' => $faker->boolean(),
+        'thumbnail_url' => $faker->imageUrl(),
+        'meta_description' => $faker->sentence,
+        'meta_keywords' => implode(',', $faker->words()),
+        'created_at' => $faker->dateTimeBetween('-1 month'),
+    ];
+});

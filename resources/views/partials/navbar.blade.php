@@ -21,7 +21,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{ route('page.brand') }}">О бренде</a></li>
                 <li><a href="{{ route('page.designer') }}">О дизайнере</a></li>
-                <li><a href="#">Новости</a></li>
+                <li><a href="{{ route('article.index') }}">Новости</a></li>
                 @if ($collections->count())
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Коллекции <span class="caret"></span></a>
