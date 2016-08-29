@@ -120,9 +120,15 @@ class AlbumController extends Controller
         $filename = $photo->hashName();
         $path = $photo->storePublicly('public/'.$storagePath);
 
-        \Image::make($photo)
+        \Image::make(storage_path('app/'.$path))
+            ->resize(1600, null, function($constraint) {
+                $constraint->aspectRatio();
+            })
+            ->save();
+
+        \Image::make(storage_path('app/'.$path))
             ->fit(300)
-            ->save(storage_path("app/public/".$storagePath."/tm-".$filename));
+            ->save(storage_path("app/public/".$storagePath."/tm-".$filename), 60);
 
         $album->images()->create([
             'path' => $storagePath.'/'.$filename,
