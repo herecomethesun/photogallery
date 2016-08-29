@@ -19,6 +19,8 @@ class ArticleController extends Controller
      */
     public function __construct(Article $article)
     {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+
         $this->article = $article;
     }
 
