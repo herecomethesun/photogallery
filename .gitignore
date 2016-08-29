@@ -5,5 +5,5 @@
 Homestead.json
 Homestead.yaml
 .env
-/public/css
-/public/js
+/public/css/*.map
+/public/js/*.map
