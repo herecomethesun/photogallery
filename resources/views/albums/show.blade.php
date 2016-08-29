@@ -21,7 +21,7 @@
             </p>
 
             <p>
-                <a href="#" class="btn btn-primary btn-lg">
+                <a href="#" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#orderModal">
                     <i class="fa fa-cart"></i> Оставить заявку
                 </a>
             </p>
@@ -51,6 +51,8 @@
             </div>
         </div>
     </div>
+
+    @include('albums.modal')
 @endsection
 
 @section('scripts')

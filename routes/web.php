@@ -37,3 +37,5 @@ Route::get('settings', 'SettingsController@edit')->name('settings');
 Route::post('settings', 'SettingsController@update')->name('settings.update');
 
 Route::resource('article', 'ArticleController');
+
+Route::post('order', 'OrderController@order')->name('order');
