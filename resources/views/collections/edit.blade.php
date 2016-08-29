@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', "Редактирование коллекции - " . config('app.name'))
+
 @section('content')
     <h1>Редактирование коллекции &laquo;{{ $collection->title }}&raquo;</h1>
 

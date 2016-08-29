@@ -2,6 +2,10 @@
 
 @extends('layouts.app')
 
+@section('title')
+    {{ config('app.name') }} - {{ $settings->get('site_slogan') }}
+@endsection
+
 @section('highlight')
 
     @if ($settings->has('video_url'))

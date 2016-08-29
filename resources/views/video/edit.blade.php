@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', "Изменение видео на главной странице - " . config('app.name'))
+
 @section('content')
     <h1>Изменение видео на главной странице</h1>
 

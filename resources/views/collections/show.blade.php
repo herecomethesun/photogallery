@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', "Коллекция &laquo;" . $collection->title . "&raquo; - " . config('app.name'))
+
 @section('content')
     <h1>{{ $collection->title }} @include('collections.actions')</h1>
 

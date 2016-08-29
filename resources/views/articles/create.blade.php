@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', "Создание новости - " . config('app.name'))
+
 @section('content')
     <h1 class="page-header">
         Создание новости

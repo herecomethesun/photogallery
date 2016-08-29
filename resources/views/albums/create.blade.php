@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', "Создание нового альбома - " . config('app.name'))
+
 @section('content')
     <h1>Создание нового альбома</h1>
 

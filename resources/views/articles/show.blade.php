@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-@section('title', $article->title)
+@section('title', $article->title . ' - ' . config('app.name'))
+
 @section('meta')
     <meta name="keywords" content="{{ $article->meta_keywords }}">
     <meta name="description" content="{{ $article->meta_description }}">

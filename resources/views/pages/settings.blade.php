@@ -2,6 +2,8 @@
 
 @extends('layouts.app')
 
+@section('title', "Настройки сайта - " . config('app.name'))
+
 @section('content')
     <h1>Настройки сайта</h1>
 

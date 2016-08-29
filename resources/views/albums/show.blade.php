@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+&laquo;{{ $album->title }}&raquo; из коллекции &laquo;{{ $album->collection->title }}&raquo; - {{ config('app.name') }}
+@endsection
+
 @section('content')
     <h1 class="page-header">
         Альбом: {{ $album->title }}

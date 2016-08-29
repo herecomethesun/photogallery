@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', "Создание новой коллекции - " . config('app.name'))
+
 @section('content')
     <h1>Создание новой коллекции</h1>
 
