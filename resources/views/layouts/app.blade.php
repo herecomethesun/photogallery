@@ -38,6 +38,8 @@
     <script src="/js/app.js"></script>
     @yield('scripts')
 
-    @include('partials.footer')
+    @if (!$isFrontPage)
+        @include('partials.footer')
+    @endif
 </body>
 </html>
