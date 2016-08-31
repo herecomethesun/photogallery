@@ -27,15 +27,21 @@ class OrderEmail extends Mailable
     public $phone;
 
     /**
+     * @var null
+     */
+    public $message;
+
+    /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name, $email, $phone)
+    public function __construct($name, $email, $phone, $message = null)
     {
         $this->name = $name;
         $this->email = $email;
         $this->phone = $phone;
+        $this->message = $message;
     }
 
     /**

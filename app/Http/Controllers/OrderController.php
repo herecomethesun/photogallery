@@ -16,15 +16,16 @@ class OrderController extends Controller
     public function order(Request $request, SettingsContract $settings)
     {
         $this->validate($request, [
-            'name' => 'required|max:100',
-            'email' => 'required|max:50|email',
-            'phone' => 'required|max:50',
+            'name'      => 'required|max:100',
+            'email'     => 'required|max:50|email',
+            'phone'     => 'required|max:50',
+            'message'   => 'max:1000',
         ]);
 
-        list($name, $email, $phone) = array_values($request->only(['name', 'email', 'phone']));
+        list($name, $email, $phone, $message) = array_values($request->only(['name', 'email', 'phone', 'message']));
 
         Mail::to($settings->get('site_email'))
-            ->send(new OrderEmail($name, $email, $phone));
+            ->send(new OrderEmail($name, $email, $phone, $message));
 
         flash()->success('Ваша заявка получена. Спасибо.');
 
