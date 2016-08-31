@@ -8,7 +8,7 @@
 
 <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
     {{ Form::label('description', 'Описание коллекции') }}
-    {{ Form::textarea('description', null, ['class' => 'form-control', 'rows' => 3]) }}
+    {{ Form::textarea('description', null, ['class' => 'form-control editor', 'rows' => 3]) }}
     @if ($errors->has('description'))
         <div class="help-block">{{ $errors->first('description') }}</div>
     @endif

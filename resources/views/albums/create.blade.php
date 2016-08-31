@@ -29,7 +29,7 @@
 
         <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
             <label for="description" class="control-label">Описание</label>
-            <textarea name="description" id="description" class="form-control" rows="5">{{ old('description') }}</textarea>
+            <textarea name="description" id="description" class="form-control editor" rows="5">{{ old('description') }}</textarea>
             @if ($errors->has('description'))
                 <div class="help-block">{{ $errors->first('description') }}</div>
             @endif

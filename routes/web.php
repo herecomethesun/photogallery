@@ -39,3 +39,4 @@ Route::post('settings', 'SettingsController@update')->name('settings.update');
 Route::resource('article', 'ArticleController');
 
 Route::post('order', 'OrderController@order')->name('order');
+Route::post('upload-image', 'ImageController@upload');
