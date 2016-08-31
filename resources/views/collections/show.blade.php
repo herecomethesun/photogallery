@@ -3,9 +3,9 @@
 @section('title', "Коллекция &laquo;" . $collection->title . "&raquo; - " . config('app.name'))
 
 @section('content')
-    <h1>{{ $collection->title }} @include('collections.actions')</h1>
+    <h1 class="page-header">{{ $collection->title }} @include('collections.actions')</h1>
 
-    <p>{{ $collection->description }}</p>
+    <div class="collection-description">{!! $collection->description !!}</div>
 
     @if ($collection->albums)
         <h3>Альбомы коллекции (Всего: {{ $collection->albums->count() }})</h3>

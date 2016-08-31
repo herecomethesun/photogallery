@@ -21,7 +21,7 @@
             </p>
             <p>
                 <strong>Описание альбома:</strong><br>
-                {{ $album->description }}
+                {!! $album->description !!}
             </p>
 
             <p>
