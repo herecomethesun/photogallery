@@ -31,6 +31,14 @@
                             <div class="help-block">{{ $errors->first('phone') }}</div>
                         @endif
                     </div>
+
+                    <div class="form-group{{ $errors->has('message') ? ' has-error' : '' }}">
+                        {{ Form::label('message', 'Комментарий к заказу') }}
+                        {{ Form::textarea('message', null, ['class' => 'form-control', 'rows' => 3]) }}
+                        @if ($errors->has('message'))
+                            <div class="help-block">{{ $errors->first('message') }}</div>
+                        @endif
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
