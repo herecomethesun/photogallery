@@ -14,8 +14,14 @@ class AlbumsTableSeeder extends Seeder
     public function run()
     {
         $collection = Collection::all()->first();
-        $collection->albums()->saveMany(
-            factory(Album::class, 2)->make()
+
+        $albums = $collection->albums()->saveMany(
+            factory(Album::class, 10)->make()
         );
+
+        $albums->each(function($album) {
+            $images = factory(\App\Image::class, 3)->make();
+            $album->images()->saveMany($images);
+        });
     }
 }

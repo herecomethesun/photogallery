@@ -127,7 +127,7 @@ class AlbumController extends Controller
             ->save();
 
         \Image::make(storage_path('app/'.$path))
-            ->fit(300)
+            ->fit(482, 316)
             ->save(storage_path("app/public/".$storagePath."/tm-".$filename), 60);
 
         $album->images()->create([

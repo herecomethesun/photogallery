@@ -39,6 +39,7 @@ $factory->define(App\Album::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->sentence,
         'description' => $faker->text,
+        'collection_id' => 1,
     ];
 });
 
@@ -54,5 +55,15 @@ $factory->define(App\Article::class, function (Faker\Generator $faker) {
         'meta_description' => $faker->sentence,
         'meta_keywords' => implode(',', $faker->words()),
         'created_at' => $faker->dateTimeBetween('-1 month'),
+    ];
+});
+
+/**
+ * Image
+ */
+$factory->define(App\Image::class, function (Faker\Generator $faker) {
+    return [
+        'path' => $faker->imageUrl(),
+        'thumbnail_path' => $faker->imageUrl(482, 316),
     ];
 });

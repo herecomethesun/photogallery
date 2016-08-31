@@ -8,35 +8,33 @@
     <p>{{ $collection->description }}</p>
 
     @if ($collection->albums)
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Альбомы коллекции (Всего: {{ $collection->albums->count() }})
-            </div>
-            <div class="panel-body">
-                @foreach($collection->albums->chunk(3) as $chunked)
-                    <div class="row">
-                        @foreach($chunked as $album)
-                            <div class="col-sm-6 col-md-4">
-                                <div class="thumbnail">
-                                    <img src="{{ asset('storage/'.$album->cover) }}" alt="{{ $album->title }}">
-                                    <div class="caption">
-                                        <h3>{{ $album->title }}</h3>
-                                        <p>{{ $album->description }}</p>
-                                        <p>
-                                            <a href="{{ route('album.show', [$album->collection->id, $album->id]) }}"
-                                               class="btn btn-primary"
-                                               role="button"
-                                            >
-                                                Подробнее
-                                            </a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
+        <h3>Альбомы коллекции (Всего: {{ $collection->albums->count() }})</h3>
+
+        <section id="dg-container" class="dg-container">
+            <div class="dg-wrapper">
+                @foreach($collection->albums as $album)
+                    <a href="{{ route('album.show', [$album->collection->id, $album->id]) }}">
+                        @if ($album->cover)
+                            @if (strpos($album->cover, 'lorem'))
+                                <img src="{{ $album->cover }}" alt="{{ $album->title }}"/>
+                            @else
+                                <img src="{{ asset('storage/'.$album->cover) }}" alt="{{ $album->title }}"/>
+                            @endif
+                        @endif
+                        <div>{{ str_limit($album->title, 50) }}</div>
+                    </a>
                 @endforeach
             </div>
-        </div>
+            <nav>
+                <span class="dg-prev">&lt;</span>
+                <span class="dg-next">&gt;</span>
+            </nav>
+        </section>
     @endif
+@endsection
+
+@section('scripts')
+    <script>
+        $('#dg-container').gallery();
+    </script>
 @endsection

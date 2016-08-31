@@ -37,6 +37,10 @@ class Album extends Model
      */
     public function getCoverAttribute()
     {
-        return $this->images->first()->thumbnail_path;
+        if ($this->images->count()) {
+            return $this->images->first()->thumbnail_path;
+        }
+
+        return null;
     }
 }
