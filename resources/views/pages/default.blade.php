@@ -7,5 +7,5 @@
         {{ $page->title }}
         @include('pages.actions')
     </h1>
-    <p>{{ $page->content }}</p>
+    {!! $page->content !!}
 @endsection
