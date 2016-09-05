@@ -5,11 +5,10 @@
 @endsection
 
 @section('content')
-    <h1 class="page-header">
-        Альбом: {{ $album->title }}
 
-        @include('albums.actions')
-    </h1>
+    <h1 class="page-header">Альбом: {{ $album->title }}</h1>
+
+    @include('albums.actions')
 
     <div class="row">
         <div class="col-md-5">
@@ -38,19 +37,13 @@
                         <div class="row">
                             @foreach($album->images as $image)
                                 <div class="col-xs-6 col-md-3">
-                                    <a href="{{ asset("storage/".$image->path) }}" class="thumbnail">
-                                        <img src="{{ asset("storage/".$image->thumbnail_path) }}" alt=""/>
+                                    <a href="{{ asset($image->path) }}" class="thumbnail">
+                                        <img src="{{ asset($image->thumbnail_path) }}" alt=""/>
                                     </a>
                                 </div>
                             @endforeach
                         </div>
                     @endif
-                    <form action="{{ route('album.upload', $album->id) }}"
-                          class="dropzone"
-                          id="addPhotosForm"
-                    >
-                        {{ csrf_field() }}
-                    </form>
                 </div>
             </div>
         </div>
@@ -62,10 +55,93 @@
 @section('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
     <script>
-        Dropzone.options.addPhotosForm = {
-            paramName: 'photo',
-            maxFileSize: 2,
-            acceptedFiles: '.jpg, .jpeg, .png, .bmp',
-        }
+        (function() {
+            var $imagePickerInput = $('#image-picker'),
+                    $btnPickImageBtn = $('#btn-pick-image');
+
+
+            var $canvas = $('#crop-canvas');
+
+            var files = [];
+
+            var $imageUploadBtn = $('#image-upload-btn');
+
+            $('#pages').find('.page').hide();
+            $imageUploadBtn.prop('disabled', true);
+
+            var showPickerPage = function() {
+                $('#picker-page').show();
+                $("#cropper-page").hide();
+            };
+
+            var showCropperPage = function() {
+                $('#picker-page').hide();
+                $("#cropper-page").show();
+            };
+
+            var resetCropper = function() {
+                files = [];
+                $canvas.cropper('destroy');
+                showPickerPage();
+            };
+
+            showPickerPage();
+
+            $btnPickImageBtn.on('click', function () {
+                $imagePickerInput.trigger('click');
+            });
+
+            $imagePickerInput.on('change', function (event) {
+                files = event.target.files;
+
+                if (files.length) {
+                    var file = files[0];
+
+                    showCropperPage();
+
+                    var reader = new FileReader();
+                    reader.onload = function(event) {
+                        $canvas.attr('src', event.target.result);
+
+                        $canvas.cropper({
+                            aspectRatio: {{ config('images.album_thumbnail_size.width') }} / {{ config('images.album_thumbnail_size.height') }}
+                        });
+
+                        $imageUploadBtn.prop('disabled', false);
+                    };
+
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            $imageUploadBtn.on('click', function() {
+
+                $imageUploadBtn.button('loading');
+
+                $canvas.cropper('getCroppedCanvas').toBlob(function(blob) {
+
+                    var formData = new FormData();
+                    formData.append('photo', files[0]);
+                    formData.append('thumbnail', blob);
+
+                    $.ajax('/album/{{ $album->id }}/upload', {
+                        method: "POST",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            alert('Изображение загружено');
+                        },
+                        error: function () {
+                            alert('Возникла ошибка при загрузке изображения на сервер. Повторите попытку.');
+                        }
+                    })
+                            .always(function() {
+                                $imageUploadBtn.button('reset');
+                                resetCropper();
+                            });
+                });
+            });
+        })();
     </script>
 @endsection

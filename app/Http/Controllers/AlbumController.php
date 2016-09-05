@@ -114,25 +114,31 @@ class AlbumController extends Controller
      */
     public function upload(Album $album, AddPhotoRequest $request)
     {
+        $path = 'photos/' . $album->id;
+
         $photo = $request->file('photo');
+        $photo->storeAs('public/' . $path, $photo->hashName());
+        $photoPath = 'storage/' . $path . '/' . $photo->hashName();
 
-        $storagePath = "photos/".$album->id;
-        $filename = $photo->hashName();
-        $path = $photo->storePublicly('public/'.$storagePath);
+        $thumbnail = $request->file('thumbnail');
+        $thumbnailFileName = 'thumb-' . $thumbnail->hashName();
+        $thumbnail->storeAs('public/' . $path, $thumbnailFileName);
+        $thumbnailPath = 'storage/' . $path . '/' . $thumbnailFileName;
 
-        \Image::make(storage_path('app/'.$path))
-            ->resize(1600, null, function($constraint) {
-                $constraint->aspectRatio();
-            })
-            ->save();
+        \Image::make(storage_path('app/public/' . $path . '/' . $thumbnailFileName))
+            ->resize(
+                config('images.album_thumbnail_size.width'),
+                config('images.album_thumbnail_size.height')
+            )->save();
 
-        \Image::make(storage_path('app/'.$path))
-            ->fit(482, 316)
-            ->save(storage_path("app/public/".$storagePath."/tm-".$filename), 60);
+        $photo = $album->images()->create([
+            'path' => $photoPath,
+            'thumbnail_path' => $thumbnailPath,
+        ]);
 
-        $album->images()->create([
-            'path' => $storagePath.'/'.$filename,
-            'thumbnail_path' => $storagePath.'/tm-'.$filename,
+        return response()->json([
+            'status' => 'success',
+            'photo' => $photo->toArray(),
         ]);
     }
 }

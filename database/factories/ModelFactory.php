@@ -64,6 +64,6 @@ $factory->define(App\Article::class, function (Faker\Generator $faker) {
 $factory->define(App\Image::class, function (Faker\Generator $faker) {
     return [
         'path' => $faker->imageUrl(),
-        'thumbnail_path' => $faker->imageUrl(482, 316),
+        'thumbnail_path' => $faker->imageUrl(500, 1000),
     ];
 });
