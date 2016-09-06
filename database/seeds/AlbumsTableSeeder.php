@@ -16,12 +16,13 @@ class AlbumsTableSeeder extends Seeder
         $collection = Collection::all()->first();
 
         $albums = $collection->albums()->saveMany(
-            factory(Album::class, 10)->make()
+            factory(Album::class, 20)->make()
         );
 
         $albums->each(function($album) {
-            $images = factory(\App\Image::class, 3)->make();
-            $album->images()->saveMany($images);
+            $album->images()->saveMany(
+                factory(App\Image::class, 2)->make()
+            );
         });
     }
 }

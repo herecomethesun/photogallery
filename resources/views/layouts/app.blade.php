@@ -45,6 +45,9 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="{{ asset('gallery/js/modernizr.custom.53451.js') }}"></script>
+    <script src="https://unpkg.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
+    <script src="https://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
+
     @if (Auth::check())
         <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.min.js"></script>
@@ -54,9 +57,5 @@
     <script src="{{ elixir('js/app.js') }}"></script>
 
     @yield('scripts')
-
-    @if (!$isFrontPage)
-        @include('partials.footer')
-    @endif
 </body>
 </html>

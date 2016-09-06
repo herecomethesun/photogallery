@@ -10,31 +10,21 @@
     @if ($collection->albums)
         <h3>Альбомы коллекции (Всего: {{ $collection->albums->count() }})</h3>
 
-        <section id="dg-container" class="dg-container">
-            <div class="dg-wrapper">
-                @foreach($collection->albums as $album)
-                    <a href="{{ route('album.show', [$album->collection->id, $album->id]) }}">
-                        @if ($album->cover)
-                            @if (strpos($album->cover, 'lorem'))
-                                <img src="{{ $album->cover }}" alt="{{ $album->title }}"/>
-                            @else
-                                <img src="{{ asset('storage/'.$album->cover) }}" alt="{{ $album->title }}"/>
-                            @endif
-                        @endif
-                        <div>{{ str_limit($album->title, 50) }}</div>
-                    </a>
-                @endforeach
-            </div>
-            <nav>
-                <span class="dg-prev">&lt;</span>
-                <span class="dg-next">&gt;</span>
-            </nav>
-        </section>
+        <div id="albums" class="albums">
+            @include('collections.items')
+        </div>
     @endif
 @endsection
 
 @section('scripts')
     <script>
-        $('#dg-container').gallery();
+        var $albums = $('#albums').masonry({
+            itemSelector: '.album',
+            columnWidth: 150
+        });
+
+        $albums.imagesLoaded().progress(function() {
+            $albums.masonry('layout');
+        });
     </script>
-@endsection
+@endsection    

@@ -3,8 +3,8 @@
 return [
 
     'album_thumbnail_size' => [
-        'width' => 500,
-        'height' => 1000,
+        'width' => 250,
+        'height' => 500,
     ],
 
 ];

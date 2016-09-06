@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| Here you may define all of your model factories. Model factories give
-| you a convenient way to create models for testing and seeding your
-| database. Just tell the factory how a default model should look.
-|
-*/
-
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
@@ -29,6 +18,25 @@ $factory->define(App\Collection::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->sentence,
         'description' => $faker->text,
+    ];
+});
+
+/**
+ * Image
+ */
+$factory->define(App\Image::class, function (Faker\Generator $faker) {
+
+    $imgSizes = [
+        [150, 300],
+        [150, 300],
+        [300, 600]
+    ];
+
+    $size = $imgSizes[array_rand($imgSizes)];
+
+    return [
+        'path' => $faker->imageUrl(600, 1200),
+        'thumbnail_path' => $faker->imageUrl($size[0], $size[1]),
     ];
 });
 
@@ -55,15 +63,5 @@ $factory->define(App\Article::class, function (Faker\Generator $faker) {
         'meta_description' => $faker->sentence,
         'meta_keywords' => implode(',', $faker->words()),
         'created_at' => $faker->dateTimeBetween('-1 month'),
-    ];
-});
-
-/**
- * Image
- */
-$factory->define(App\Image::class, function (Faker\Generator $faker) {
-    return [
-        'path' => $faker->imageUrl(),
-        'thumbnail_path' => $faker->imageUrl(500, 1000),
     ];
 });
