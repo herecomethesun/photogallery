@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Album;
 use App\Http\Requests;
+use App\Image;
 use Illuminate\Contracts\Validation\Factory;
 use Illuminate\Http\Request;
 
@@ -11,6 +13,41 @@ class ImageController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    /**
+     * @param Album $album
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index(Album $album)
+    {
+        $images = $album->images()->paginate(20);
+
+        return view('image.index', compact('album', 'images'));
+    }
+
+    /**
+     * @param Album $album
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function create(Album $album)
+    {
+        return view('image.create', compact('album'));
+    }
+
+    /**
+     * Destroy the image
+     *
+     * @param Image $image
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy(Image $image)
+    {
+        $image->delete();
+
+        flash()->success('Изображение удалено');
+
+        return redirect()->back();
     }
 
     /**

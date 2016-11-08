@@ -1,0 +1,25 @@
+{
+  "name": "Gallery",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Nikita Kiselev <kiselev2008@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/nikitakiselev/photogallery",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "resources/assets/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lightgallery.js": "^1.0.0",
+    "justifiedGallery": "miromannino/Justified-Gallery#^3.6.3",
+    "jquery": "2.2.4",
+    "bootstrap": "^3.3.7",
+    "font-awesome": "fontawesome#^4.7.0"
+  }
+}

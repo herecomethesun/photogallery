@@ -46,7 +46,7 @@ $factory->define(App\Image::class, function (Faker\Generator $faker) {
 $factory->define(App\Album::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->sentence,
-        'description' => $faker->text,
+        'description' => $faker->realText(500),
         'collection_id' => 1,
     ];
 });

@@ -33,42 +33,4 @@
         {{ csrf_field() }}
         {{ method_field('delete') }}
     </form>
-
-    <div class="modal fade" id="addImageModal" tabindex="-1" role="dialog" aria-labelledby="addImageModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="addImageModalLabel">Загрузка изображения</h4>
-                </div>
-                <div class="modal-body">
-                    <div id="pages" class="pages">
-                        <div id="picker-page" class="image-picker-page page">
-                            <div class="alert alert-info">
-                                <ol>
-                                    <li>Выберите изображение с компьютера, нажав на кнопку <em>"Выбрать изображение"</em></li>
-                                    <li>Выберите область изображения для обрезки</li>
-                                    <li>Нажмите кнопку <em>"Загрузить"</em>, чтобы загрузить изображение в альбом.</li>
-                                </ol>
-                            </div>
-
-                            <input type="file" name="image-picker" id="image-picker" class="hidden"/>
-
-                            <div class="text-center">
-                                <button id="btn-pick-image" class="btn btn-primary btn-lg">Выбрать изображение</button>
-                            </div>
-                        </div>
-
-                        <div id="cropper-page" class="cropper-page page">
-                            <img src="" id="crop-canvas" class="img-responsive">
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-                    <button id="image-upload-btn" type="button" class="btn btn-primary">Загрузить</button>
-                </div>
-            </div>
-        </div>
-    </div>
 @endif

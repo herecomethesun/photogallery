@@ -19,6 +19,10 @@ class AlbumsTableSeeder extends Seeder
             factory(Album::class, 20)->make()
         );
 
+        $albums->first()->images()->saveMany(
+            factory(App\Image::class, 20)->make()
+        );
+
         $albums->each(function($album) {
             $album->images()->saveMany(
                 factory(App\Image::class, 2)->make()

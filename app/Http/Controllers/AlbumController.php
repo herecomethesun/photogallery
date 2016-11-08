@@ -55,7 +55,9 @@ class AlbumController extends Controller
      */
     public function show(Collection $collection, Album $album)
     {
-        return view('albums.show', compact('album'));
+        $images = $album->images()->latest()->get();
+
+        return view('albums.show', compact('album', 'images'));
     }
 
     /**
