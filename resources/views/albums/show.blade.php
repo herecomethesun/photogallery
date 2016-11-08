@@ -40,6 +40,13 @@
                                     <a href="{{ asset($image->path) }}" class="thumbnail">
                                         <img src="{{ asset($image->thumbnail_path) }}" alt=""/>
                                     </a>
+
+                                    {{ Form::open(['route' => ['album.image.delete', $album->id, $image->id], 'method' => 'delete']) }}
+                                        <button type="submit" class="btn btn-danger btn-sm" title="Удалить изображение">
+                                            <i class="fa fa-trash"></i> Удалить
+                                        </button>
+                                    {{ Form::close() }}
+
                                 </div>
                             @endforeach
                         </div>

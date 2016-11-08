@@ -141,4 +141,18 @@ class AlbumController extends Controller
             'photo' => $photo->toArray(),
         ]);
     }
+
+    /**
+     * @param Album $album
+     * @param Image $image
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroyImage(Album $album, Image $image)
+    {
+        $image->delete();
+
+        flash()->success('Изображение удалено');
+
+        return redirect()->back();
+    }
 }
