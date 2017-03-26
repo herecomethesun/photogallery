@@ -56,3 +56,18 @@
         }
     }
 }
+
+.order-btn-div {
+    z-index: 10000;
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    width: 100%;
+    display: none;
+}
+
+.album-image:hover {
+    .order-btn-div {
+        display: block;
+    }
+}

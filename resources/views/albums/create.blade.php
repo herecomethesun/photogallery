@@ -20,7 +20,7 @@
             <label for="collection_id" class="control-label">Коллекция</label>
             <select name="collection_id" id="collection_id" class="form-control">
                 @foreach($collections as $collection)
-                    <option value="{{ $collection->id }}">
+                    <option value="{{ $collection->id }}"{{ $collection->id == request('collection') ? ' selected' : '' }}>
                         {{ $collection->title }}
                     </option>
                 @endforeach

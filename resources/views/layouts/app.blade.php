@@ -44,6 +44,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.3/js/jquery.justifiedGallery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.3.5/js/lightgallery.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
     @if (Auth::check())
         <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.min.js"></script>

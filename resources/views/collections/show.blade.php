@@ -3,7 +3,7 @@
 @section('title', "Коллекция &laquo;" . $collection->title . "&raquo; - " . config('app.name'))
 
 @section('content')
-    <h1 class="page-header">{{ $collection->title }} @include('collections.actions')</h1>
+    <h1 class="page-header">{{ $collection->title }} @include('collections.actions', $collection)</h1>
 
     <div class="collection-description">{!! $collection->description !!}</div>
 

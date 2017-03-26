@@ -12,6 +12,8 @@ class OrderController extends Controller
 {
     /**
      * @param Request $request
+     * @param SettingsContract $settings
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function order(Request $request, SettingsContract $settings)
     {
@@ -20,15 +22,18 @@ class OrderController extends Controller
             'email'     => 'required|max:50|email',
             'phone'     => 'required|max:50',
             'message'   => 'max:1000',
+            'image' => 'required',
         ]);
 
         list($name, $email, $phone, $message) = array_values($request->only(['name', 'email', 'phone', 'message']));
 
+        $image = $request->get('image');
+
         Mail::to($settings->get('site_email'))
-            ->send(new OrderEmail($name, $email, $phone, $message));
+            ->send(new OrderEmail($name, $email, $phone, $message, $image));
 
-        flash()->success('Ваша заявка получена. Спасибо.');
-
-        return redirect()->back();
+        return response()->json([
+            'status' => 'success'
+        ]);
     }
 }

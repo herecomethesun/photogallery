@@ -5,7 +5,7 @@
         </button>
         <ul class="dropdown-menu">
             <li>
-                <a href="{{ route('album.create') }}">
+                <a href="{{ route('album.create') }}?collection={{ $collection->id }}">
                     <i class="fa fa-object-group"></i> Добавить альбом
                 </a>
             </li>

@@ -22,30 +22,28 @@
                 <li><a href="{{ route('page.brand') }}">О бренде</a></li>
                 <li><a href="{{ route('page.designer') }}">О дизайнере</a></li>
                 <li><a href="{{ route('article.index') }}">Новости</a></li>
-                @if ($collections->count())
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Коллекции <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Коллекции <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
 
-                            @if (Auth::check())
-                                <li>
-                                    <a href="{{ route('collection.create') }}">
-                                        Добавить коллекцию
-                                    </a>
-                                </li>
-                                <li role="separator" class="divider"></li>
-                            @endif
+                        @if (Auth::check())
+                            <li>
+                                <a href="{{ route('collection.create') }}">
+                                    Добавить коллекцию
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                        @endif
 
-                            @foreach($collections as $collection)
-                                <li>
-                                    <a href="{{ route('collection.show', $collection->id) }}">
-                                        {{ $collection->title }}
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                @endif
+                        @foreach($collections as $collection)
+                            <li>
+                                <a href="{{ route('collection.show', $collection->id) }}">
+                                    {{ $collection->title }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
                 <li><a href="{{ route('page.contacts') }}">Наши контакты</a></li>
             </ul>
 

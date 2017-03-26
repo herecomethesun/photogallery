@@ -6,5 +6,8 @@
     <li><strong>Имя:</strong> {{ $name }}</li>
     <li><strong>E-mail:</strong> {{ $email }}</li>
     <li><strong>Телефон:</strong> {{ $phone }}</li>
-    <li><strong>Комментарий:</strong> {{ $message }}</li>
+    <li><strong>Комментарий:</strong> {{ $comment }}</li>
 </ul>
+
+<p>Выбранный товар:</p>
+<p><img src="{{ $image }}"></p>
