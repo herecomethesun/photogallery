@@ -13,7 +13,6 @@
                     Подробнее
                 </button>
             </div>
-            <span>{{ $collection->title }}</span>
         @else
             <p>
                 <a href="{{ route('album.show', [$album->collection->id, $album->id]) }}">
