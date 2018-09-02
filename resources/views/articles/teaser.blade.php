@@ -1,4 +1,4 @@
-<div class="panel{{ $article->published ? ' panel-primary' : ' panel-warning' }}">
+<div class="panel">
     <div class="panel-heading">
         <h2 class="panel-title">
             {!! $article->published ? '' : '<label class="label label-info">Черновик</label>' !!}
@@ -20,8 +20,7 @@
             Подробнее...
         </a>
     </div>
-
-    <div class="panel-footer">
-        Дата создания: {{ $article->created_at->format('d.m.Y') }}
-    </div>
+    {{--<div class="panel-footer">--}}
+        {{--Дата создания: {{ $article->created_at->format('d.m.Y') }}--}}
+    {{--</div>--}}
 </div>

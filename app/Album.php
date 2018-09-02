@@ -10,6 +10,7 @@ class Album extends Model
         'title',
         'description',
         'cover',
+        'cover_image_id',
     ];
 
     /**
@@ -37,7 +38,15 @@ class Album extends Model
      */
     public function getCoverAttribute()
     {
-        if ($this->images->count()) {
+
+        if ($this->attributes['cover_image_id'] > 0) {
+            foreach ($this->images as $image){
+                if($image->attributes['id'] == $this->attributes['cover_image_id']){
+                    return $image->attributes['thumbnail_path'];
+                }
+            }
+            return $this->images->first()->thumbnail_path;
+        } else{
             return $this->images->first()->thumbnail_path;
         }
 

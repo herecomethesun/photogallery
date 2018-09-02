@@ -32,7 +32,7 @@ class AlbumController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  AlbumRequest  $request
+     * @param  AlbumRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(AlbumRequest $request)
@@ -55,7 +55,7 @@ class AlbumController extends Controller
      */
     public function show(Collection $collection, Album $album)
     {
-        $images = $album->images()->latest()->get();
+        $images = $album->images()->orderBy('priority', 'desc')->get();
 
         return view('albums.show', compact('album', 'images'));
     }
@@ -94,9 +94,26 @@ class AlbumController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param AlbumRequest $request
+     * @param Album $album
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateCoverImage(Request $request, Album $album)
+    {
+
+        $album->update($request->all());
+
+        flash()->success('Данные обновлены');
+
+        return redirect()->back();
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
-     * @param  Album  $album
+     * @param  Album $album
      * @return \Illuminate\Http\Response
      */
     public function destroy(Album $album)

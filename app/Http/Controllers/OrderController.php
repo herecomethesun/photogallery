@@ -21,6 +21,9 @@ class OrderController extends Controller
             'name'      => 'required|max:100',
             'email'     => 'required|max:50|email',
             'phone'     => 'required|max:50',
+            'adress'     => 'max:150',
+            'map'     => 'max:500',
+            'how'     => 'max:1000',
             'message'   => 'max:1000',
             'image' => 'required',
         ]);

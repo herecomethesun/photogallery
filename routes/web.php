@@ -25,11 +25,13 @@ Route::get('album/create', 'AlbumController@create')->name('album.create');
 Route::get('album/{album}/edit', 'AlbumController@edit')->name('album.edit');
 Route::post('album/{album}/upload', 'AlbumController@upload')->name('album.upload');
 Route::patch('album/{album}', 'AlbumController@update')->name('album.update');
+Route::post('album/{album}', 'AlbumController@updateCoverImage')->name('album.updateCoverImage');
 Route::delete('album/{album}', 'AlbumController@destroy')->name('album.delete');
 
 Route::get('album/{album}/image/create', 'ImageController@create')->name('image.create');
 Route::get('album/{album}/image', 'ImageController@index')->name('image.index');
 Route::delete('image/{image}', 'ImageController@destroy')->name('image.delete');
+Route::patch('image/{image}', 'ImageController@update')->name('image.update');
 
 Route::get('collection/{collection}/album/{album}', 'AlbumController@show')->name('album.show');
 // Route::resource('collection/{collection}/album', 'AlbumController', ['except' => ['index']]);

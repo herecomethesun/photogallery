@@ -60,8 +60,9 @@ body {
     z-index: 3;
 }
 
-.albums {
-
+.album:hover .order-btn-div {
+    display: block;
+    bottom: 40px;
 }
 
 .album-cover {

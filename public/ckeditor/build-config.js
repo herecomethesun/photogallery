@@ -84,6 +84,7 @@ var CKBUILDER_CONFIG = {
 		'tabletools' : 1,
 		'toolbar' : 1,
 		'undo' : 1,
+		'colorbutton' : 1,
 		'uploadimage' : 1,
 		'wsc' : 1,
 		'wysiwygarea' : 1,

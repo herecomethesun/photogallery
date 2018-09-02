@@ -3,7 +3,7 @@
 @section('title', "Редактирование альбома - " . config('app.name'))
 
 @section('content')
-    <h1>Редактирование альбома &laquo;{{ $album->title }}&raquo;</h1>
+    <h1>Редактирование альбома &laquo;{!! $album->title !!}&raquo;</h1>
 
     <form action="{{ route('album.update', $album->id) }}" method="post">
         {{ csrf_field() }}
@@ -11,7 +11,7 @@
 
         <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
             <label for="title" class="control-label">Название альбома</label>
-            <input type="text" id="title" name="title" class="form-control" value="{{ old('title', $album->title) }}"/>
+            <textarea name="title" id="title" class="form-control editor">{!! old('title', $album->title) !!}</textarea>
             @if ($errors->has('title'))
                 <div class="help-block">{{ $errors->first('title') }}</div>
             @endif

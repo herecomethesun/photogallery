@@ -51,6 +51,21 @@ class ImageController extends Controller
     }
 
     /**
+     * Destroy the image
+     *
+     * @param Image $image
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(Image $image, Request $request)
+    {
+        $image->update($request->all());
+
+        flash()->success('Изображение сохранено');
+
+        return redirect()->back();
+    }
+
+    /**
      * Upload image from ckeditor
      *
      * @param Request $request

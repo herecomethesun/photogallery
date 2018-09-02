@@ -11,7 +11,8 @@ class Collection extends Model
      */
     protected $fillable = [
         'title',
-        'description'
+        'description',
+        'cover_image_id'
     ];
 
     /**
