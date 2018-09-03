@@ -11,6 +11,7 @@ elixir(mix => {
     mix.copy('resources/assets/bower_components/font-awesome/fonts', 'public/build/fonts');
     mix.copy('resources/assets/bower_components/bootstrap/dist/fonts', 'public/build/fonts');
     mix.copy('resources/assets/bower_components/lightgallery.js/dist/img', 'public/build/img');
+    mix.copy('resources/assets/images', 'public/build/img');
 
 /*    mix.scripts([
         '../bower_components/jquery/dist/jquery.js',

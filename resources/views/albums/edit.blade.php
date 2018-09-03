@@ -11,7 +11,7 @@
 
         <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
             <label for="title" class="control-label">Название альбома</label>
-            <textarea name="title" id="title" class="form-control editor">{!! old('title', $album->title) !!}</textarea>
+            <textarea name="title" id="title" class="form-control editor_limited">{!! old('title', $album->title) !!}</textarea>
             @if ($errors->has('title'))
                 <div class="help-block">{{ $errors->first('title') }}</div>
             @endif
