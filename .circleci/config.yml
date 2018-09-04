@@ -1,0 +1,103 @@
+version: 2
+jobs:
+  build:
+    docker:
+    - image: nikitakiselev/photogallery:1.0
+      environment:
+        DB_DATABASE: circleci
+    - image: circleci/mariadb:10.1
+      environment:
+        MYSQL_USER: 'homestead'
+        MYSQL_PASSWORD: 'secret'
+        MYSQL_ROOT_PASSWORD: 'secret'
+        MYSQL_DATABASE: circleci
+    branches:
+      ignore:
+      - master
+      - develop
+    working_directory: ~/repo
+    steps:
+    - checkout
+    - restore_cache:
+        keys:
+        - v1-dependencies-{{ checksum "composer.json" }}
+        - v1-dependencies-
+    - run: composer install -n --prefer-dist
+    - save_cache:
+        paths:
+        - ./vendor
+        key: v1-dependencies-{{ checksum "composer.json" }}
+    - restore_cache:
+        keys:
+        - node-v3-{{ checksum "package.json" }}
+        - node-v3-
+    - run: npm install
+    - save_cache:
+        key: node-v3-{{ checksum "package.json" }}
+        paths:
+        - node_modules
+        - ~/.npm
+    - run: cp .env.example .env
+    - run: php artisan migrate --force
+    - run:
+        name: Build frontend
+        command: |
+          bower install
+          npm run prod
+
+  deploy_staging:
+    docker:
+    - image: nikitakiselev/photogallery:1.0
+      environment:
+        DB_DATABASE: circleci
+    - image: circleci/mariadb:10.1
+      environment:
+        MYSQL_USER: 'homestead'
+        MYSQL_PASSWORD: 'secret'
+        MYSQL_ROOT_PASSWORD: 'secret'
+        MYSQL_DATABASE: circleci
+    working_directory: ~/repo
+    steps:
+    - checkout
+    - restore_cache:
+        keys:
+        - v1-dependencies-{{ checksum "composer.json" }}
+        - v1-dependencies-
+    - run: composer install -n --prefer-dist
+    - save_cache:
+        paths:
+        - ./vendor
+        key: v1-dependencies-{{ checksum "composer.json" }}
+    - restore_cache:
+        keys:
+        - node-v3-{{ checksum "package.json" }}
+        - node-v3-
+    - run: npm install
+    - save_cache:
+        key: node-v3-{{ checksum "package.json" }}
+        paths:
+        - node_modules
+        - ~/.npm
+    - run: cp .env.example .env
+    - run: php artisan migrate --force
+    - run:
+        name: Build frontend
+        command: |
+          bower install
+          npm run prod
+    - run:
+        name: Deploy Application
+        command: |
+          ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "cd ~"
+          ~/.composer/vendor/bin/envoy run deploy
+          scp -r ./public/build $SSH_USER@$SSH_HOST:/home/u2846/domains/staging.annalesnikova.ru/public
+
+workflows:
+  version: 2
+  build_and_deploy_staging:
+    jobs:
+    - deploy_staging:
+        filters:
+          branches:
+            only:
+            - develop
