@@ -14,6 +14,7 @@
 
     <div class="video-overlay">
         <div class="jumbotron">
+<p>Make some changes here...</p>
             <h1>{{ config('app.name') }}</h1>
 
             @if ($settings->has('site_slogan'))
